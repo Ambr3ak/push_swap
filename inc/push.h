@@ -1,7 +1,13 @@
 #ifndef PUSH_H
 # define PUSH_H
 
-# define MALLOC -1
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h> //a enlever
+# define ERR_MALLOC -1
+# define ERR_ARG -2
+# define ERR_LIST -3
+# define OK 0
 
 typedef struct s_list
 {
@@ -22,9 +28,19 @@ typedef struct s_swap
 	int error;
 }				t_swap;
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_back(t_list **alst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+t_list			*ft_lstmap(t_list *lst,
+							void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstnew(void *content);
+t_list			*ft_lstlast(t_list *lst);
+void			ft_lstadd_front(t_list **alst, t_list *new);
+void			ft_lstadd_back(t_list **alst, t_list *new);
+void			ft_lstdelone(t_list *lst, void (*del)(void*));
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstiter(t_list *lst, void (*f)(void *));
+int	ft_isdigit(int c);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+
 
 void	*malloc_list(t_swap *data, int size);
 void	*free_malloc_lst(t_swap *data);

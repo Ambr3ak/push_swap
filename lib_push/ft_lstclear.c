@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/08 22:47:56 by abourdar          #+#    #+#             */
-/*   Updated: 2021/09/08 22:47:58 by abourdar         ###   ########.fr       */
+/*   Created: 2020/11/27 12:38:43 by abourdar          #+#    #+#             */
+/*   Updated: 2020/11/27 17:39:52 by abourdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/push.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {

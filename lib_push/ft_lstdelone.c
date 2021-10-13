@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 10:51:41 by abourdar          #+#    #+#             */
-/*   Updated: 2020/11/27 17:39:06 by abourdar         ###   ########.fr       */
+/*   Created: 2020/11/27 12:22:05 by abourdar          #+#    #+#             */
+/*   Updated: 2020/11/27 17:42:03 by abourdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	t_list	*list;
 
-	list = *alst;
-	if (list)
+	list = lst;
+	if (lst)
 	{
-		while (list->next)
-			list = list->next;
-		list->next = new;
+		lst = lst->next;
+		(*del)(list->content);
+		free(list);
 	}
-	else
-		*alst = new;
 }

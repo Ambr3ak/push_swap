@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 10:51:41 by abourdar          #+#    #+#             */
-/*   Updated: 2020/11/27 17:39:06 by abourdar         ###   ########.fr       */
+/*   Created: 2020/11/26 17:52:27 by abourdar          #+#    #+#             */
+/*   Updated: 2020/11/27 17:41:33 by abourdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*list;
+	int i;
 
-	list = *alst;
-	if (list)
+	i = 0;
+	while (lst)
 	{
-		while (list->next)
-			list = list->next;
-		list->next = new;
+		lst = lst->next;
+		i++;
 	}
-	else
-		*alst = new;
+	return (i);
 }

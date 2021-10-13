@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 10:51:41 by abourdar          #+#    #+#             */
-/*   Updated: 2020/11/27 17:39:06 by abourdar         ###   ########.fr       */
+/*   Created: 2020/11/25 11:48:17 by abourdar          #+#    #+#             */
+/*   Updated: 2020/11/30 17:17:42 by abourdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_list	*list;
+	int i;
 
-	list = *alst;
-	if (list)
-	{
-		while (list->next)
-			list = list->next;
-		list->next = new;
-	}
+	i = 0;
+	if (!(s))
+		return ;
 	else
-		*alst = new;
+	{
+		while (s[i])
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
+	}
 }

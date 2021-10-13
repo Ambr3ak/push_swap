@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/push.h"
 
 t_list	*ft_lstnew(void *content)
 {

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cub.h"
+#include "inc/push.h"
 
-void	*lst_add(t_swap *data, void *ptr)
+void	*lst_add_mlc(t_swap *data, void *ptr)
 {
 	t_list	*elem;
 
@@ -22,10 +22,10 @@ void	*lst_add(t_swap *data, void *ptr)
 		free(ptr);
 		return (NULL);
 	}
-	if (!(map->ptrs))
-		map->ptrs = elem;
+	if (!(data->mlc))
+		data->mlc = elem;
 	else
-		ft_lstadd_back(&map->ptrs, elem);
+		ft_lstadd_back(&data->mlc, elem);
 	return (ptr);
 }
 
@@ -36,7 +36,7 @@ void	*malloc_list(t_swap *data, int size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
-	if (!lst_add(map, ptr))
+	if (!lst_add_mlc(data, ptr))
 	{
 		free(ptr);
 		return (NULL);
@@ -46,6 +46,6 @@ void	*malloc_list(t_swap *data, int size)
 
 void	*free_malloc_lst(t_swap *data)
 {
-	ft_lstclear(&map->ptrs, free);
+	ft_lstclear(&data->mlc, free);
 	return (0);
 }

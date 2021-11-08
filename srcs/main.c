@@ -1,19 +1,22 @@
 #include "../inc/push.h"
 
-int check_double(char **argv)
+int check_double(int *tmp)
 {
 	int i;
 	int j;
 
-	i = 1;
+	i = 0;
 	j = i + 1;
-	while (argv[i])
+	while (tmp[i])
 	{
 		j = i + 1;
-		while (argv[j])
+		while (tmp[j])
 		{
-			if (argv[i] == argv[j])
+			if (tmp[i] - tmp[j] == 0)
+			{
+				printf("doublon");
 				return (ERR_ARG);
+			}
 			j++;
 		}
 		i++;
@@ -37,7 +40,7 @@ int	lst_add(t_arg *arg, int ptr)
 	return (ptr);
 }
 
-t_list_int	*init_lst(t_arg *arg, int *tmp)
+int	init_lst(t_arg *arg, int *tmp)
 {
 	int i;
 
@@ -46,7 +49,7 @@ t_list_int	*init_lst(t_arg *arg, int *tmp)
 	{
 		
 		if (!lst_add(arg, tmp[i]))
-			return (NULL);
+			return (ERR_LIST);
 		i++;
 	}
 	while (arg->num != NULL)
@@ -54,10 +57,10 @@ t_list_int	*init_lst(t_arg *arg, int *tmp)
  		printf("%d -> ", (int)arg->num->content);
         arg->num = arg->num->next;
 	}
-	return (arg->num);
+	return (1);
 }
 
-int init_atoi(t_swap *data, char **argv, int l)
+int init_atoi(t_swap *data, char **argv)
 {
 	int i;
 	int j;
@@ -65,7 +68,7 @@ int init_atoi(t_swap *data, char **argv, int l)
 
 	i = 1;
 	j = 0;
-	tmp = malloc_list(data, sizeof(int) * l);
+	tmp = malloc_list(data, sizeof(int) * 6);
 	if (!tmp)
 		return (ERR_MALLOC);
 	while (argv[i])
@@ -74,9 +77,15 @@ int init_atoi(t_swap *data, char **argv, int l)
 		i++;
 		j++;
 	}
-	if (!init_lst(data->arg, tmp))
-		return (ERR_LIST);
-	return (0);
+	j = 0;
+	while (tmp[j])
+	{
+		printf("%d\n", tmp[j]);
+		j++;
+	}
+	if (!check_double(tmp))
+		return (init_lst(data->arg, tmp));
+	return (ERR_ARG);
 }
 
 int parser_nb(t_swap *data, char **argv)
@@ -90,17 +99,16 @@ int parser_nb(t_swap *data, char **argv)
 	while (argv[i])
 	{
 		j = 0;
-		while (ft_isdigit(argv[i][j]) && argv[i][j])
+		while ((ft_isdigit(argv[i][j]) || argv[i][0] == '-') && argv[i][j])
 		{
 			j++;
 		}
 		if (argv[i][j] != '\0')
 			return (ERR_ARG);
-		else
-				l++;
+		l++;
 		i++;
 	}
-	if (!init_atoi(data, argv, l))
+	if (!init_atoi(data, argv))
 		return (ERR_LIST);
 	return (0);
 }
@@ -109,7 +117,9 @@ int init_swap(t_swap *data, char **argv, int argc)
 {
     data->arg = malloc_list(data, sizeof(t_arg));
     if (!data->arg)
+	{
         return (ERR_MALLOC);
+	}
 	data->arg->nb = argc;
 	data->error = 0;
     return (parser_nb(data, argv));
@@ -119,6 +129,8 @@ void exit_prog(t_swap *data, int error)
 {
 	if (error == -1)
 		ft_putstr_fd("Error\nBad arguments", 1);
+	if (error == -2)
+		ft_putstr_fd("Error\nNot only integers", 1);
 	if (error == 0)
 		ft_putstr_fd("Ok", 1);
 	free_malloc_lst(data);

@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 15:35:24 by abourdar          #+#    #+#             */
-/*   Updated: 2020/11/27 17:41:01 by abourdar         ###   ########.fr       */
+/*   Created: 2020/11/18 17:51:21 by abourdar          #+#    #+#             */
+/*   Updated: 2020/11/30 10:13:45 by abourdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+int	ft_atoi(const char *str)
 {
-	t_list	*new_list;
-	t_list	*first;
+	int			m;
+	long		res;
+	char		*strr;
 
-	new_list = NULL;
-	while (lst)
+	m = 0;
+	res = 0;
+	strr = (char *)str;
+	while (*strr == ' ' || (*strr > 8 && *strr < 14))
+		strr++;
+	if (*strr == '-' || *strr == '+')
 	{
-		if (!(first = ft_lstnew((*f)(lst->content))))
-		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, first);
-		lst = lst->next;
+		if (*strr == '-')
+			m++;
+		strr++;
 	}
-	return (new_list);
+	while (*strr >= '0' && *strr <= '9')
+	{
+		res = res * 10 + *strr - '0';
+		strr++;
+	}
+	if (m % 2 != 0)
+		res = -res;
+	return (res);
 }

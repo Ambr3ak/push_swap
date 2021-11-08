@@ -21,57 +21,86 @@ int check_double(char **argv)
 	return (0);
 }
 
-void	*lst_add(t_arg *arg, void *ptr)
+int	lst_add(t_arg *arg, int ptr)
 {
-	t_list	*elem;
+	t_list_int	*elem;
 
-	elem = ft_lstnew(ptr);
+	elem = ft_lstnew_int((ptr));
 	if (!(elem))
 	{
-		free(ptr);
-		return (NULL);
+		return (ERR_ARG);
 	}
 	if (!(arg->num))
 		arg->num = elem;
 	else
-		ft_lstadd_back(&arg->num, elem);
+		ft_lstadd_back_int(&arg->num, elem);
 	return (ptr);
 }
 
-void	*init_lst(t_arg *arg, char **argv)
+t_list_int	*init_lst(t_arg *arg, int *tmp)
 {
 	int i;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (tmp[i])
 	{
 		
-		if (!lst_add(arg, argv[i]))
+		if (!lst_add(arg, tmp[i]))
 			return (NULL);
-			arg->num->content = (void *)1;
-		printf("%d\n", (int)arg->num->content);
 		i++;
 	}
-	return (arg);
+	while (arg->num != NULL)
+	{
+ 		printf("%d -> ", (int)arg->num->content);
+        arg->num = arg->num->next;
+	}
+	return (arg->num);
 }
 
+int init_atoi(t_swap *data, char **argv, int l)
+{
+	int i;
+	int j;
+	int *tmp;
+
+	i = 1;
+	j = 0;
+	tmp = malloc_list(data, sizeof(int) * l);
+	if (!tmp)
+		return (ERR_MALLOC);
+	while (argv[i])
+	{
+		tmp[j] = ft_atoi(argv[i]);
+		i++;
+		j++;
+	}
+	if (!init_lst(data->arg, tmp))
+		return (ERR_LIST);
+	return (0);
+}
 
 int parser_nb(t_swap *data, char **argv)
 {
     int i;
 	int j;
+	int l;
 
 	i = 1;
+	l = 0;
 	while (argv[i])
 	{
 		j = 0;
 		while (ft_isdigit(argv[i][j]) && argv[i][j])
+		{
 			j++;
+		}
 		if (argv[i][j] != '\0')
 			return (ERR_ARG);
+		else
+				l++;
 		i++;
 	}
-	if (!init_lst(data->arg, argv))
+	if (!init_atoi(data, argv, l))
 		return (ERR_LIST);
 	return (0);
 }

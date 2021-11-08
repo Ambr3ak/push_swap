@@ -24,3 +24,16 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
+
+int	ft_lstsize_int(t_list_int *lst)
+{
+	int i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

@@ -7,11 +7,11 @@ SRCS	= 	./srcs/main.c \
 			./lib_push/ft_lstdelone.c\
 			./lib_push/ft_lstiter.c \
 			./lib_push/ft_lstlast.c \
-			./lib_push/ft_lstmap.c \
 			./lib_push/ft_lstnew.c \
 			./lib_push/ft_lstsize.c \
 			./lib_push/ft_isdigit.c \
 			./lib_push/ft_putchar_fd.c \
+			./lib_push/ft_atoi.c \
 			./lib_push/ft_putstr_fd.c \
 			./malloc_lst.c
 

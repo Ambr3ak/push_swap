@@ -26,3 +26,18 @@ t_list	*ft_lstnew(void *content)
 	}
 	return (list);
 }
+
+t_list_int	*ft_lstnew_int(int content)
+{
+	t_list_int	*list;
+
+	list = malloc(sizeof(t_list_int));
+	if (!(list))
+		return (NULL);
+	else
+	{
+		list->content = content;
+		list->next = NULL;
+	}
+	return (list);
+}

@@ -19,3 +19,11 @@ t_list	*ft_lstlast(t_list *lst)
 			lst = lst->next;
 	return (lst);
 }
+
+t_list_int	*ft_lstlast_int(t_list_int *lst)
+{
+	if (lst)
+		while (lst->next)
+			lst = lst->next;
+	return (lst);
+}

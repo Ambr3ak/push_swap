@@ -26,3 +26,18 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	else
 		return ;
 }
+
+void	ft_lstiter_int(t_list_int *lst, void (*f)(int))
+{
+	t_list_int *list;
+
+	list = lst;
+	if (list)
+		while (list)
+		{
+			(*f)(list->content);
+			list = list->next;
+		}
+	else
+		return ;
+}

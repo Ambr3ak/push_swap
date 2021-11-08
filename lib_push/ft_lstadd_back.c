@@ -26,3 +26,18 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 	else
 		*alst = new;
 }
+
+void	ft_lstadd_back_int(t_list_int **alst, t_list_int *new)
+{
+	t_list_int	*list;
+
+	list = *alst;
+	if (list)
+	{
+		while (list->next)
+			list = list->next;
+		list->next = new;
+	}
+	else
+		*alst = new;
+}

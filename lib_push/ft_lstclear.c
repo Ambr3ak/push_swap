@@ -29,7 +29,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	*lst = NULL;
 }
 
-void	ft_lstclear_int(t_list_int **lst, void (*del)(int))
+void	ft_lstclear_int(t_list_int **lst)
 {
 	t_list_int	*tmp;
 	t_list_int	*list;
@@ -39,9 +39,7 @@ void	ft_lstclear_int(t_list_int **lst, void (*del)(int))
 	while (list)
 	{
 		tmp = list->next;
-		(*del)(list->content);
 		free(list);
-		list = tmp;
 	}
 	*lst = NULL;
 }

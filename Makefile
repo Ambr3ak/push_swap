@@ -1,6 +1,11 @@
 NAME  = push_swap
 
 SRCS	= 	./srcs/main.c \
+			./srcs/init_list.c \
+			./srcs/instructions_a.c \
+			./srcs/instructions_b.c \
+			./srcs/instructions_rs.c \
+			./srcs/parser.c \
 			./lib_push/ft_lstadd_back.c \
 			./lib_push/ft_lstadd_front.c \
 			./lib_push/ft_lstclear.c \
@@ -14,6 +19,7 @@ SRCS	= 	./srcs/main.c \
 			./lib_push/ft_atoi.c \
 			./lib_push/ft_putstr_fd.c \
 			./malloc_lst.c
+
 
 
 OBJS= $(SRCS:.c=.o)

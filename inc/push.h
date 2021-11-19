@@ -9,6 +9,7 @@
 # define ERR_LIST -3
 # define OK 0
 
+
 typedef struct s_list
 {
 	void			*content;
@@ -17,14 +18,15 @@ typedef struct s_list
 
 typedef struct s_list_int
 {
-	int					content;
+	int					content; //nb
 	struct s_list_int	*next;
 }               t_list_int;
 
 typedef struct s_arg
 {
     int nb;
-    t_list_int *num;
+	 t_list_int *num_b;
+    t_list_int *num_a;
 }				t_arg;
 
 typedef struct s_swap
@@ -45,7 +47,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 
 void	ft_lstadd_front_int(t_list_int **alst, t_list_int *new);
-void	ft_lstclear_int(t_list_int **lst, void (*del)(int));
+void	ft_lstclear_int(t_list_int **lst);
 void	ft_lstdelone_int(t_list_int *lst, void (*del)(int));
 void	ft_lstiter_int(t_list_int *lst, void (*f)(int));
 t_list_int	*ft_lstlast_int(t_list_int *lst);
@@ -64,4 +66,22 @@ int	ft_atoi(const char *str);
 void	*malloc_list(t_swap *data, int size);
 void	*free_malloc_lst(t_swap *data);
 
+
+int	init_lst(t_arg *arg, int *tmp);
+int init_swap(t_swap *data, char **argv, int argc);
+int parser_nb(t_swap *data, char **argv);
+
+void sa(t_list_int **list_a);
+void ra(t_list_int **list_a);
+void    rra(t_list_int **list_a);
+void pa(t_list_int **a, t_list_int **b);
+
+void sb(t_list_int **list_b);
+void rb(t_list_int **list_b);
+void rrb(t_list_int **list_b);
+void pb(t_list_int **a, t_list_int **b);
+
+void ss(t_list_int **list_a, t_list_int **list_b);
+void rr(t_list_int **list_a, t_list_int **list_b);
+void rrr(t_list_int **list_a, t_list_int **list_b);
 #endif

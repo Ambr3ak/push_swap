@@ -1,0 +1,75 @@
+*t_list_int *sa(t_list_int *tmp)
+{
+    t_list_int *supp;
+
+    supp = 
+    if (!tmp)
+    {
+
+    }
+
+    return (tmp);
+}*/
+
+int	lst_add(t_first *tmp, int ptr)
+{
+    t_list_int *add;
+
+    add = malloc_list(data, sizeof(*add));
+    if (!add)
+        return (ERR_ARG);
+    add->content = ptr;
+    ft_lstadd_back_int(&tmp, ptr);
+    
+
+	/*t_list_int	*elem;
+
+	elem = ft_lstnew_int((ptr));
+	if (!(elem))
+	{
+		return (ERR_ARG);
+	}
+	if (!(tmp))
+		tmp = elem;
+	else
+		ft_lstadd_back_int(&tmp, elem);
+	return (ptr);*/
+}
+
+t_first	*init_lst(t_swap *data, int *tmp)
+{
+    t_first *list;
+    t_list_int *elem;
+    int i;
+    
+    i = 0;
+    list = malloc_list(data, sizeof(*list));
+    elem = ft_lstnew_int(tmp[i]);
+    list->premier = elem;
+    i++;
+	while (tmp[i])
+	{
+		if (!lst_add(list, tmp[i]))
+			return (NULL);
+		i++;
+	}
+	while (elem != NULL)
+	{
+ 		printf("%d -> ", (int)elem->content);
+        elem = elem->next;
+	}
+    //sa(elem);
+    return (list);
+}
+
+int init_swap(t_swap *data, char **argv, int argc)
+{
+    data->arg = malloc_list(data, sizeof(t_arg));
+    if (!data->arg)
+	{
+        return (ERR_MALLOC);
+	}
+	data->arg->nb = argc;
+	data->error = 0;
+    return (parser_nb(data, argv));
+}

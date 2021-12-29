@@ -25,7 +25,7 @@ typedef struct s_list_int
 typedef struct s_arg
 {
     int nb;
-	 t_list_int *num_b;
+	t_list_int *num_b;
     t_list_int *num_a;
 }				t_arg;
 
@@ -33,6 +33,8 @@ typedef struct s_swap
 {
 	t_list *mlc;
 	t_arg *arg;
+	int i_small;
+	int i_large;
 	int error;
 }				t_swap;
 
@@ -67,9 +69,13 @@ void	*malloc_list(t_swap *data, int size);
 void	*free_malloc_lst(t_swap *data);
 
 
-int	init_lst(t_arg *arg, int *tmp);
+int	init_lst(t_arg *arg, int *tmp, t_list_int **stack);
 int init_swap(t_swap *data, char **argv, int argc);
+void init_tab(t_list_int *list, int *tab);
 int parser_nb(t_swap *data, char **argv);
+int is_sorted(t_list_int *list, int *tab, int size);
+
+void    start_sort(t_swap *data);
 
 void sa(t_list_int **list_a);
 void ra(t_list_int **list_a);

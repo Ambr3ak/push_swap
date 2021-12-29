@@ -1,6 +1,6 @@
 #include "../inc/push.h"
 
-int	lst_add(t_arg *arg, int ptr)
+int	lst_add(int ptr, t_list_int **stack)
 {
 	t_list_int	*elem;
 
@@ -9,14 +9,14 @@ int	lst_add(t_arg *arg, int ptr)
 	{
 		return (ERR_ARG);
 	}
-	if (!(arg->num_a))
-		arg->num_a = elem;
+	if (!(stack))
+		*stack = elem;
 	else
-		ft_lstadd_back_int(&arg->num_a, elem);
+		ft_lstadd_back_int(stack, elem);
 	return (ptr);
 }
 
-int	init_lst(t_arg *arg, int *tmp)
+int	init_lst(t_arg *arg, int *tmp, t_list_int **stack)
 {
 	int i;
 
@@ -24,32 +24,13 @@ int	init_lst(t_arg *arg, int *tmp)
 	while (tmp[i])
 	{
 		
-		if (!lst_add(arg, tmp[i]))
+		if (!lst_add(tmp[i], stack))
 			return (ERR_LIST);
 		if (i == arg->nb - 1)
 			break;
 		i++;
 	}
-	//sa(&arg->num_a);
 
-	//ra(&arg->num_a);
-	//ra(&arg->num_a);
-	//pb(&arg->num_a, &arg->num_b);
-	pb(&arg->num_a, &arg->num_b);
-	pa(&arg->num_a, &arg->num_b);
-	//ss(&arg->num_a, &arg->num_b);
-	printf("A STACK\n");
-	while (arg->num_a)
-	{
-		printf("%d -> ", (int)arg->num_a->content);
-        arg->num_a = arg->num_a->next;
-	}
-	printf("\nB STACK\n");
-	while (arg->num_b)
-	{
-		printf("%d -> ", (int)arg->num_b->content);
-        arg->num_b = arg->num_b->next;
-	}
 	return (1);
 }
 
@@ -58,6 +39,8 @@ int init_swap(t_swap *data, char **argv, int argc)
     data->arg = malloc_list(data, sizeof(t_arg));
 	data->arg->num_a = NULL;
 	data->arg->num_b = NULL;
+	data->i_small = -1;
+	data->i_large = -1;
     if (!data->arg)
 	{
         return (ERR_MALLOC);
@@ -65,4 +48,19 @@ int init_swap(t_swap *data, char **argv, int argc)
 	data->arg->nb = argc;
 	data->error = 0;
     return (parser_nb(data, argv));
+}
+
+void init_tab(t_list_int *list, int *tab)
+{
+    int i;
+    t_list_int *lst;
+
+    lst = list;
+    i = 0;
+	while (lst)
+	{
+		tab[i] = (int)lst->content;
+        lst = lst->next;
+        i++;
+	}
 }

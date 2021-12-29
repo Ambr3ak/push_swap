@@ -41,7 +41,7 @@ int init_atoi(t_swap *data, char **argv)
 		j++;
 	}
 	if (!check_double(tmp, data->arg->nb))
-		return (init_lst(data->arg, tmp));
+		return (init_lst(data->arg, tmp, &data->arg->num_a));
 	return (-3);
 }
 

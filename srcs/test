@@ -73,3 +73,17 @@ int init_swap(t_swap *data, char **argv, int argc)
 	data->error = 0;
     return (parser_nb(data, argv));
 }
+
+
+printf("A STACK\n");
+	while (data->arg->num_a)
+	{
+		printf("%d -> ", (int)data->arg->num_a->content);
+        data->arg->num_a = data->arg->num_a->next;
+	}
+	printf("\nB STACK\n");
+	while (data->arg->num_b)
+	{
+		printf("%d -> ", (int)data->arg->num_b->content);
+        data->arg->num_b = data->arg->num_b->next;
+	}

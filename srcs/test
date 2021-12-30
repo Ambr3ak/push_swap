@@ -87,3 +87,31 @@ printf("A STACK\n");
 		printf("%d -> ", (int)data->arg->num_b->content);
         data->arg->num_b = data->arg->num_b->next;
 	}
+
+int find_small(t_swap *data, int *tab, int nb)
+{
+    int i;
+    
+    i = 0;
+    while (tab[i] && tab[i] < nb)
+        i++;
+    if (i == 0)
+        return (-1);
+    return (data->smallst = i - 1);
+}
+
+int find_large(t_swap *data, int *tab, int nb)
+{
+    int i;
+    int j;
+    
+    i = 0;
+    j = 0;
+    while (tab[j])
+        j++;
+    while (tab[i] && tab[i] < nb)
+        i++;
+    if (i == j)
+        return (-1);
+    return (data->i_large = i);
+}

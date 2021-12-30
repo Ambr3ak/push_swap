@@ -33,8 +33,10 @@ typedef struct s_swap
 {
 	t_list *mlc;
 	t_arg *arg;
-	int i_small;
-	int i_large;
+	int smallst;
+	int ind_sml;
+	int lst_size;
+	int nb_arg;
 	int error;
 }				t_swap;
 
@@ -69,7 +71,7 @@ void	*malloc_list(t_swap *data, int size);
 void	*free_malloc_lst(t_swap *data);
 
 
-int	init_lst(t_arg *arg, int *tmp, t_list_int **stack);
+int	init_lst(t_swap *data, int *tmp, t_list_int **stack);
 int init_swap(t_swap *data, char **argv, int argc);
 void init_tab(t_list_int *list, int *tab);
 int parser_nb(t_swap *data, char **argv);

@@ -16,7 +16,7 @@ int	lst_add(int ptr, t_list_int **stack)
 	return (ptr);
 }
 
-int	init_lst(t_arg *arg, int *tmp, t_list_int **stack)
+int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 {
 	int i;
 
@@ -26,7 +26,7 @@ int	init_lst(t_arg *arg, int *tmp, t_list_int **stack)
 		
 		if (!lst_add(tmp[i], stack))
 			return (ERR_LIST);
-		if (i == arg->nb - 1)
+		if (i == data->lst_size)
 			break;
 		i++;
 	}
@@ -39,13 +39,13 @@ int init_swap(t_swap *data, char **argv, int argc)
     data->arg = malloc_list(data, sizeof(t_arg));
 	data->arg->num_a = NULL;
 	data->arg->num_b = NULL;
-	data->i_small = -1;
-	data->i_large = -1;
+	data->smallst = -1;
     if (!data->arg)
 	{
         return (ERR_MALLOC);
 	}
 	data->arg->nb = argc;
+	data->lst_size = argc - 1;
 	data->error = 0;
     return (parser_nb(data, argv));
 }

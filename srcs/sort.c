@@ -1,32 +1,45 @@
 #include "../inc/push.h"
 
-int find_small(t_swap *data, int *tab, int nb)
+int get_lst_size(t_list_int *list)
 {
-    int i;
-    
-    i = 0;
-    while (tab[i] && tab[i] < nb)
-        i++;
-    if (i == 0)
-        return (-1);
-    return (data->i_small = i - 1);
+    t_list_int *lst;
+    int size;
+
+    size = 0;
+    lst = list;
+    while (lst)
+    {
+        lst = lst->next;
+        size++;
+    }
+    return (size);
 }
 
-int find_large(t_swap *data, int *tab, int nb)
+int find_small(t_swap *data)
 {
-    int i;
-    int j;
-    
-    i = 0;
-    j = 0;
-    while (tab[j])
-        j++;
-    while (tab[i] && tab[i] < nb)
-        i++;
-    if (i == j)
-        return (-1);
-    return (data->i_large = i);
+    t_list_int *lst;
+    t_list_int *lst_2;
+
+    lst = data->arg->num_a;
+    lst_2 = lst->next;
+    data->smallst = lst->content;
+    while (lst)
+    {
+        if (lst_2->content < lst->content)
+        {
+            data->smallst = lst_2->content;
+            lst = lst->next;
+        }
+        else
+        {
+            lst_2 = lst_2->next;
+            if (!lst_2)
+                return (data->smallst);
+        }
+    }
+    return (data->smallst);
 }
+
 
 void sort_three(t_swap *data)
 {
@@ -44,45 +57,55 @@ void sort_three(t_swap *data)
     }
 }
 
+int get_index(t_list_int *list, int nb)
+{
+    t_list_int *lst;
+    int i;
+
+    lst = list;
+    i = 0;
+    while (lst->content != nb)
+    {
+        lst = lst->next;
+        i++;
+    }
+    return (i);
+}
+
 void sort_five(t_swap *data)
 {
-    int *tab;
-    int stack_a;
-
-    tab = malloc_list(data, sizeof(int) * (5));
-    stack_a = 5;
-    while (stack_a != 3)
-    
-
-
-
-    /*pb(&data->arg->num_a, &data->arg->num_b);
-    pb(&data->arg->num_a, &data->arg->num_b);
+    while (get_lst_size(data->arg->num_a) != 3)
+    {
+        data->ind_sml = get_index(data->arg->num_a, find_small(data));
+        if (get_lst_size(data->arg->num_a) / 2 > data->ind_sml)
+            ra(&data->arg->num_a);
+        else
+            rra(&data->arg->num_a);
+        if (data->arg->num_a->content == data->smallst)
+            pb(&data->arg->num_a, &data->arg->num_b);
+    }
     sort_three(data);
-    init_tab(data->arg->num_a, tab);
-    find_small(data, tab, data->arg->num_b->content);
-    find_large(data, tab, data->arg->num_b->content);
-    printf("small %d\n", data->i_small);
-    printf("large %d\n", data->i_large);
-    pa(&data->arg->num_a, &data->arg->num_b);*/
-   
+    while (data->arg->num_b)
+        pa(&data->arg->num_a, &data->arg->num_b);
+}
+
+void    start_sort(t_swap *data)
+{
+    if (data->lst_size == 3)
+        sort_three(data);
+    if (data->lst_size == 5)
+        sort_five(data);
+    printf("\nA\n");
     while (data->arg->num_a)
 	{
 		printf("%d -> ", (int)data->arg->num_a->content);
         data->arg->num_a = data->arg->num_a->next;
 	}
-}
-
-void    start_sort(t_swap *data)
-{
-    if (data->arg->nb - 1 == 3)
-        sort_three(data);
-    if (data->arg->nb - 1 == 5)
-        sort_five(data);
-    while (data->arg->num_a)
+    printf("\nB\n");
+    while (data->arg->num_b)
 	{
-		printf("%d -> ", (int)data->arg->num_a->content);
-        data->arg->num_a = data->arg->num_a->next;
+		printf("%d -> ", (int)data->arg->num_b->content);
+        data->arg->num_b = data->arg->num_b->next;
 	}
 }
 

@@ -7,6 +7,7 @@ SRCS	= 	./srcs/main.c \
 			./srcs/instructions_rs.c \
 			./srcs/parser.c \
 			./srcs/sort.c \
+			./srcs/sort_k.c \
 			./lib_push/ft_lstadd_back.c \
 			./lib_push/ft_lstadd_front.c \
 			./lib_push/ft_lstclear.c \

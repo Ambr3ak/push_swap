@@ -58,5 +58,6 @@ void pb(t_list_int **a, t_list_int **b)
 	    list_a = list_a->next;
 	    ft_lstadd_front_int(b, tmp);
         *a = list_a;
+        printf("pb\n");
     }
 }

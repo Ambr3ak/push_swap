@@ -27,6 +27,7 @@ typedef struct s_arg
     int nb;
 	t_list_int *num_b;
     t_list_int *num_a;
+	t_list_int *stack_k;
 }				t_arg;
 
 typedef struct s_swap
@@ -49,6 +50,7 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
+int	lst_add(int ptr, t_list_int **stack);
 
 void	ft_lstadd_front_int(t_list_int **alst, t_list_int *new);
 void	ft_lstclear_int(t_list_int **lst);
@@ -83,7 +85,7 @@ void sa(t_list_int **list_a);
 void ra(t_list_int **list_a);
 void    rra(t_list_int **list_a);
 void pa(t_list_int **a, t_list_int **b);
-
+void sort_k(t_swap *data);
 void sb(t_list_int **list_b);
 void rb(t_list_int **list_b);
 void rrb(t_list_int **list_b);
@@ -92,4 +94,9 @@ void pb(t_list_int **a, t_list_int **b);
 void ss(t_list_int **list_a, t_list_int **list_b);
 void rr(t_list_int **list_a, t_list_int **list_b);
 void rrr(t_list_int **list_a, t_list_int **list_b);
+
+
+int find_small(t_swap *data, t_list_int *num_a);
+int get_lst_size(t_list_int *list);
+int get_index(t_list_int *list, int nb);
 #endif

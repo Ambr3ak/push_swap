@@ -89,8 +89,8 @@ void sort_k(t_swap *data)
     k_b = NULL;
     while (get_lst_size(data->arg->stack_k) != 1)
     {
-        data->ind_sml = get_index(data->arg->stack_k, find_small(data, data->arg->stack_k));
-        if (get_lst_size(data->arg->stack_k) / 2 > data->ind_sml)
+        data->index = get_index(data->arg->stack_k, find_small(data, data->arg->stack_k));
+        if (get_lst_size(data->arg->stack_k) / 2 > data->index)
             ra_k(&data->arg->stack_k);
         else
             rra_k(&data->arg->stack_k);

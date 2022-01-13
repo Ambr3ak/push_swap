@@ -9,6 +9,8 @@ SRCS	= 	./srcs/main.c \
 			./srcs/sort.c \
 			./srcs/sort_k.c \
 			./srcs/utils.c \
+			./srcs/algo_100.c \
+			./srcs/algo_utils.c \
 			./lib_push/ft_lstadd_back.c \
 			./lib_push/ft_lstadd_front.c \
 			./lib_push/ft_lstclear.c \

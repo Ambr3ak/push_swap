@@ -37,7 +37,7 @@ typedef struct s_swap
 	int smallst;
 	int key_nbr;
 	int nb;
-	int ind_sml;
+	int index;
 	int lst_size;
 	int nb_arg;
 	int error;
@@ -106,4 +106,11 @@ void rrr(t_list_int **list_a, t_list_int **list_b);
 int find_small(t_swap *data, t_list_int *num_a);
 int get_lst_size(t_list_int *list);
 int get_index(t_list_int *list, int nb);
+
+void sort_100(t_swap *data);
+
+int find_keynbr(t_swap *data, t_list_int *num_a, int key_nbr);
+int find_chunk(t_list_int *lst, int index);
+int small(t_list_int *a);
+int large(t_list_int *b);
 #endif

@@ -100,31 +100,38 @@ int large(t_list_int *b)
    return (large);
 }
 
+int    rounded(float i)
+{
+    int    j;
+
+    j = (int) i;
+    if ((i - j) >= 0.5)
+        return (j + 1);
+    else
+        return (j);
+}
+
 void sort_a_2(t_swap *data)
 {
     int count;
     t_list_int *tmp_b;
+    int index;
+    int lrg;
 
     count = 0;
-    tmp_b = data->arg->num_b->next;
     while (data->arg->num_b)
     {
-        if (data->arg->num_b->content != large(data->arg->num_b) && tmp_b->content == large(data->arg->num_b))
-        {
+        tmp_b = data->arg->num_b->next;
+        lrg = large(data->arg->num_b); 
+        if (data->arg->num_b->content != lrg && tmp_b->content == lrg)
             sb(&data->arg->num_b);
-            tmp_b = data->arg->num_b->next;
-        }
-        while (data->arg->num_b->content != large(data->arg->num_b))
-        {
+        index = get_index(data->arg->num_b, lrg);
+        if (data->arg->num_b->content == lrg)
+            pa(&data->arg->num_a, &data->arg->num_b);
+        if (get_lst_size(data->arg->num_b) / 2 > index)
             rb(&data->arg->num_b);
-            count++;
-        }
-        pa(&data->arg->num_a, &data->arg->num_b);
-        while (count)
-        {
+        else
             rrb(&data->arg->num_b);
-            count--;
-        }
     }
 }
 

@@ -37,8 +37,8 @@ int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 int init_swap(t_swap *data, char **argv, int argc)
 {
     data->arg = malloc_list(data, sizeof(t_arg));
-	data->arg->num_a = NULL;
-	data->arg->num_b = NULL;
+	data->a = NULL;
+	data->b = NULL;
 	data->arg->stack_k = NULL;
 	data->smallst = -1;
     if (!data->arg)

@@ -21,9 +21,11 @@ int main(int argc, char **argv)
 
     if (argc < 2)
     {
-		ft_putstr_fd("Error\nbad num_aber of arguments", 1);
+		ft_putstr_fd("Error\nbad number of arguments", 1);
 	    return(-1);
 	}
+	else if (argc == 2)
+		return (0);
     data = malloc(sizeof(t_swap));
     data->mlc = NULL;
     if (data)

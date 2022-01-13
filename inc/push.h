@@ -3,7 +3,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h> //a enlever
 # define ERR_MALLOC -1
 # define ERR_ARG -2
 # define ERR_LIST -3
@@ -25,8 +24,6 @@ typedef struct s_list_int
 typedef struct s_arg
 {
     int nb;
-	t_list_int *num_b;
-    t_list_int *num_a;
 	t_list_int *stack_k;
 }				t_arg;
 
@@ -34,6 +31,8 @@ typedef struct s_swap
 {
 	t_list *mlc;
 	t_arg *arg;
+	t_list_int *a;
+	t_list_int *b;
 	int smallst;
 	int key_nbr;
 	int nb;
@@ -107,10 +106,18 @@ int find_small(t_swap *data, t_list_int *num_a);
 int get_lst_size(t_list_int *list);
 int get_index(t_list_int *list, int nb);
 
+void sort_min(t_swap *data);
 void sort_100(t_swap *data);
+void sort_three(t_swap *data);
+void sort_10(t_swap *data);
+void sort_more(t_swap *data);
 
 int find_keynbr(t_swap *data, t_list_int *num_a, int key_nbr);
 int find_chunk(t_list_int *lst, int index);
 int small(t_list_int *a);
 int large(t_list_int *b);
+void proximity_algo(t_swap *data, int index);
+
+void sort_a(t_swap *data);
+void sort_a_2(t_swap *data);
 #endif

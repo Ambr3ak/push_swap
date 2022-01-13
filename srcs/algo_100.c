@@ -1,15 +1,5 @@
 #include "../inc/push.h"
 
-void proximity_algo(t_swap *data, int index)
-{
-    if (index == 0)
-        pb(&data->arg->num_a, &data->arg->num_b);
-    else if ((get_lst_size(data->arg->num_a)) / 2 > index)
-        ra(&data->arg->num_a);
-    else
-        rra(&data->arg->num_a);
-}
-
 void sort_a_2(t_swap *data)
 {
     int count;
@@ -18,19 +8,19 @@ void sort_a_2(t_swap *data)
     int lrg;
 
     count = 0;
-    while (data->arg->num_b)
+    while (data->b)
     {
-        tmp_b = data->arg->num_b->next;
-        lrg = large(data->arg->num_b); 
-        if (data->arg->num_b->content != lrg && tmp_b->content == lrg)
-            sb(&data->arg->num_b);
-        index = get_index(data->arg->num_b, lrg);
+        tmp_b = data->b->next;
+        lrg = large(data->b); 
+        if (data->b->content != lrg && tmp_b->content == lrg)
+            sb(&data->b);
+        index = get_index(data->b, lrg);
         if (index == 0)
-            pa(&data->arg->num_a, &data->arg->num_b);
-        else if ((get_lst_size(data->arg->num_b)) / 2 > index)
-            rb(&data->arg->num_b);
+            pa(&data->a, &data->b);
+        else if ((get_lst_size(data->b)) / 2 > index)
+            rb(&data->b);
         else
-            rrb(&data->arg->num_b);
+            rrb(&data->b);
     }
 }
 
@@ -38,10 +28,10 @@ void sort_a(t_swap *data)
 {
     int smaller;
 
-    while (get_lst_size(data->arg->num_a) > 1)
+    while (get_lst_size(data->a) > 1)
     {
-        smaller = small(data->arg->num_a);
-        data->index = get_index(data->arg->num_a, smaller);
+        smaller = small(data->a);
+        data->index = get_index(data->a, smaller);
         proximity_algo(data, data->index);
     }      
 }
@@ -53,7 +43,7 @@ void sort_100(t_swap *data)
     int IDX;
     int size;
 
-    data->arg->stack_k = init_k(data->arg->num_a);
+    data->arg->stack_k = init_k(data->a);
     sort_k(data);
     lst = data->arg->stack_k;
     size = get_lst_size(data->arg->stack_k);
@@ -61,9 +51,9 @@ void sort_100(t_swap *data)
     while (IDX < size)
     {
         key_nbr = find_chunk(data->arg->stack_k, IDX);
-        while (find_keynbr(data, data->arg->num_a, key_nbr))
+        while (find_keynbr(data, data->a, key_nbr))
         {   
-            data->index = get_index(data->arg->num_a, data->key_nbr);
+            data->index = get_index(data->a, data->key_nbr);
             proximity_algo(data, data->index);
         }
         IDX += size / 4;

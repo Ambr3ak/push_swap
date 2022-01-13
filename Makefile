@@ -10,6 +10,8 @@ SRCS	= 	./srcs/main.c \
 			./srcs/sort_k.c \
 			./srcs/utils.c \
 			./srcs/algo_100.c \
+			./srcs/algo_10.c \
+			./srcs/sort_500.c \
 			./srcs/algo_utils.c \
 			./lib_push/ft_lstadd_back.c \
 			./lib_push/ft_lstadd_front.c \
@@ -33,7 +35,7 @@ INC	=	-I inc
 
 CC	=	clang
 
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
 .c.o	:
 			${CC} ${CFLAGS} ${INC} -c $< -o ${<:.c=.o}
 

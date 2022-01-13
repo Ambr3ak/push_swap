@@ -11,7 +11,7 @@ void sa(t_list_int **list_a)
         tmp = list->next;
         list->next = tmp->next;
 	    ft_lstadd_front_int(list_a, tmp);
-        printf("sa\n");
+        ft_putstr_fd("sa\n", 1);
     }
 }
 
@@ -28,7 +28,7 @@ void ra(t_list_int **list_a)
 	    ft_lstadd_back_int(list_a, tmp);
         tmp->next = NULL;
         *list_a = list;
-        printf("ra\n");
+        ft_putstr_fd("ra\n", 1);
     }
 }
 
@@ -45,7 +45,7 @@ void    rra(t_list_int **list_a)
             tmp = tmp->next;
         ft_lstadd_front_int(list_a, tmp->next);
         tmp->next = NULL;
-        printf("rra\n");
+        ft_putstr_fd("rra\n", 1);
     }
 }
 
@@ -61,6 +61,6 @@ void pa(t_list_int **a, t_list_int **b)
 	    list_b = list_b->next;
 	    ft_lstadd_front_int(a, tmp);
         *b = list_b;
-        printf("pa\n");
+        ft_putstr_fd("pa\n", 1);
     }
 }

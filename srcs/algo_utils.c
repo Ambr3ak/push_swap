@@ -66,3 +66,13 @@ int large(t_list_int *b)
     }
    return (large);
 }
+
+void proximity_algo(t_swap *data, int index)
+{
+    if (index == 0)
+        pb(&data->a, &data->b);
+    else if ((get_lst_size(data->a)) / 2 > index)
+        ra(&data->a);
+    else
+        rra(&data->a);
+}

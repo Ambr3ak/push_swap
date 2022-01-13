@@ -55,7 +55,7 @@ t_first	*init_lst(t_swap *data, int *tmp)
 	}
 	while (elem != NULL)
 	{
- 		printf("%d -> ", (int)elem->content);
+ 		ft_putstr_fd("%d -> ", (int)elem->content);
         elem = elem->next;
 	}
     //sa(elem);
@@ -75,17 +75,17 @@ int init_swap(t_swap *data, char **argv, int argc)
 }
 
 
-printf("A STACK\n");
-	while (data->arg->num_a)
+ft_putstr_fd("A STACK\n");
+	while (data->a)
 	{
-		printf("%d -> ", (int)data->arg->num_a->content);
-        data->arg->num_a = data->arg->num_a->next;
+		ft_putstr_fd("%d -> ", (int)data->a->content);
+        data->a = data->a->next;
 	}
-	printf("\nB STACK\n");
-	while (data->arg->num_b)
+	ft_putstr_fd("\nB STACK\n");
+	while (data->b)
 	{
-		printf("%d -> ", (int)data->arg->num_b->content);
-        data->arg->num_b = data->arg->num_b->next;
+		ft_putstr_fd("%d -> ", (int)data->b->content);
+        data->b = data->b->next;
 	}
 
 int find_small(t_swap *data, int *tab, int nb)

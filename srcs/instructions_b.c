@@ -27,6 +27,7 @@ void rb(t_list_int **list_b)
 	    ft_lstadd_back_int(list_b, tmp);
         tmp->next = NULL;
         *list_b = list;
+        printf("rb\n");
     }
 }
 
@@ -43,6 +44,7 @@ void    rrb(t_list_int **list_b)
             tmp = tmp->next;
         ft_lstadd_front_int(list_b, tmp->next);
         tmp->next = NULL;
+        printf("rrb\n");
     }
 }
 

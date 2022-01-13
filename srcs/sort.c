@@ -1,45 +1,24 @@
 #include "../inc/push.h"
 
-int get_lst_size(t_list_int *list)
+
+int find_keynbr(t_swap *data, t_list_int *num_a, int key_nbr)
 {
     t_list_int *lst;
-    int size;
-
-    size = 0;
-    lst = list;
-    while (lst)
-    {
-        lst = lst->next;
-        size++;
-    }
-    return (size);
-}
-
-int find_small(t_swap *data, t_list_int *num_a)
-{
-    t_list_int *lst;
-    t_list_int *lst_2;
 
     lst = num_a;
-    lst_2 = lst->next;
-    data->smallst = lst->content;
+    data->key_nbr = 0;
     while (lst)
     {
-        if (lst_2->content < lst->content)
+        if (lst->content <= key_nbr)
         {
-            data->smallst = lst_2->content;
-            lst = lst->next;
+            data->key_nbr = lst->content;
+            return (data->key_nbr);
         }
         else
-        {
-            lst_2 = lst_2->next;
-            if (!lst_2)
-                return (data->smallst);
-        }
+            lst = lst->next;
     }
-    return (data->smallst);
+    return (0);
 }
-
 
 void sort_three(t_swap *data)
 {
@@ -57,21 +36,6 @@ void sort_three(t_swap *data)
     }
 }
 
-int get_index(t_list_int *list, int nb)
-{
-    t_list_int *lst;
-    int i;
-
-    lst = list;
-    i = 0;
-    while (lst->content != nb)
-    {
-        lst = lst->next;
-        i++;
-    }
-    return (i);
-}
-
 void sort_five(t_swap *data)
 {
     while (get_lst_size(data->arg->num_a) != 3)
@@ -85,36 +49,102 @@ void sort_five(t_swap *data)
             pb(&data->arg->num_a, &data->arg->num_b);
     }
     sort_three(data);
+    //while (data->arg->num_b)
+   //     pa(&data->arg->num_a, &data->arg->num_b);
+}
+
+int find_chunk(t_list_int *lst, int index)
+{
+    t_list_int *list;
+    int i;
+
+    list = lst;
+    i = 1 ;
+    while (i != index)
+    {
+        list = list->next;
+        i++;
+    }
+    return (list->content);
+}
+
+int small(t_list_int *a)
+{
+   t_list_int *a_tmp;
+    int small;
+
+    a_tmp = a;
+    small = a_tmp->content;
+    while (a_tmp)
+    {
+        if (a_tmp->content < small)
+            small = a_tmp->content;
+        a_tmp = a_tmp->next;
+    }
+   return (small);
+}
+
+int large(t_list_int *b)
+{
+    t_list_int *b_tmp;
+    int large;
+
+    b_tmp = b;
+    large = b_tmp->content;
+    while (b_tmp)
+    {
+        if (b_tmp->content > large)
+            large = b_tmp->content;
+        b_tmp = b_tmp->next;
+    }
+   return (large);
+}
+
+void sort_a_2(t_swap *data)
+{
+    int count;
+    t_list_int *tmp_b;
+
+    count = 0;
+    tmp_b = data->arg->num_b->next;
     while (data->arg->num_b)
+    {
+        if (data->arg->num_b->content != large(data->arg->num_b) && tmp_b->content == large(data->arg->num_b))
+        {
+            sb(&data->arg->num_b);
+            tmp_b = data->arg->num_b->next;
+        }
+        while (data->arg->num_b->content != large(data->arg->num_b))
+        {
+            rb(&data->arg->num_b);
+            count++;
+        }
         pa(&data->arg->num_a, &data->arg->num_b);
+        while (count)
+        {
+            rrb(&data->arg->num_b);
+            count--;
+        }
+    }
 }
 
-int is_key_nb(t_list_int *stack_a, int key_nbr)
+void sort_a(t_swap *data)
 {
-    while (stack_a)
-    {
-        if (stack_a->content <= key_nbr)
-            return (1);
-        stack_a = stack_a->next;
-        return (0);
-    }
-    return (0); 
-}
+    int smaller;
+    int index;
 
-t_list_int *init_k(t_list_int *list_a)
-{
-    t_list_int *lst;
-    t_list_int *tmp_k;
-    
-
-    lst = list_a;
-    tmp_k = NULL;
-    while (lst)
+    while (get_lst_size(data->arg->num_a) > 1)
     {
-        lst_add(lst->content, &tmp_k);
-        lst = lst->next;
-    }
-    return (tmp_k);
+        smaller = small(data->arg->num_a);
+        index = get_index(data->arg->num_a, smaller);
+        if (data->arg->num_a->content == smaller)
+            pb(&data->arg->num_a, &data->arg->num_b);
+        if (get_lst_size(data->arg->num_a) / 2 > index)
+            ra(&data->arg->num_a);
+        else
+            rra(&data->arg->num_a);
+    }      
+    sort_a_2(data);
 }
 
 void sort_100(t_swap *data)
@@ -122,36 +152,32 @@ void sort_100(t_swap *data)
     int key_nbr;
     t_list_int *lst;
     int i;
-    int j;
+    int index;
+    int size;
 
-    i = 0;
-    j = 1;
+    i = 1;
     data->arg->stack_k = init_k(data->arg->num_a);
     sort_k(data);
     lst = data->arg->stack_k;
-    key_nbr = get_lst_size(data->arg->stack_k) / 4 * j;
-    while (key_nbr <= get_lst_size(data->arg->stack_k) / 4 * 3)
+    size = get_lst_size(data->arg->stack_k);
+    index = size / 4;
+    while (index < size)
     {
-        while (i != key_nbr)
-        {
-            lst = lst->next;
-            i++;
-        }
-        key_nbr = lst->content;
-        while (find_small(data, data->arg->num_a) <= key_nbr)
+        key_nbr = find_chunk(data->arg->stack_k, index);
+        while (find_keynbr(data, data->arg->num_a, key_nbr))
         {   
-            data->ind_sml = get_index(data->arg->num_a, find_small(data, data->arg->num_a));
+            data->ind_sml = get_index(data->arg->num_a, data->key_nbr);
+            if (data->arg->num_a->content == data->key_nbr)
+                pb(&data->arg->num_a, &data->arg->num_b);
             if (get_lst_size(data->arg->num_a) / 2 > data->ind_sml)
                 ra(&data->arg->num_a);
             else
                 rra(&data->arg->num_a);
-            if (data->arg->num_a->content == data->smallst)
-                pb(&data->arg->num_a, &data->arg->num_b);
         }
-        j++;
-        key_nbr = get_lst_size(data->arg->stack_k) / 4 * j;
+        index += size / 4;
     }
-    sort_five(data);
+    sort_a(data);
+    //sort_five(data);
 }
 
 void    start_sort(t_swap *data)
@@ -162,7 +188,7 @@ void    start_sort(t_swap *data)
         sort_five(data);
     else if (data->lst_size <= 100)
         sort_100(data);
-    printf("\nB\n");
+    /*printf("\nB\n");
     while (data->arg->num_b)
 	{
 		printf("%d -> ", (int)data->arg->num_b->content);
@@ -179,7 +205,7 @@ void    start_sort(t_swap *data)
 	{
 		printf("%d -> ", (int)data->arg->num_a->content);
         data->arg->num_a = data->arg->num_a->next;
-	}
+	}*/
 }
 
 int is_sorted(t_list_int *list, int *tab, int size)
@@ -198,9 +224,14 @@ int is_sorted(t_list_int *list, int *tab, int size)
 	}
     i = 0;
     j = i + 1;
-    while (j < size && tab[i] < tab[j])
-        j++;
-    if (j != size)
-        return (0);
+    while (i < size)
+    {
+        j = i + 1;
+        while (j < size && tab[i] < tab[j])
+            j++;
+        if (j != size)
+            return (0);
+        i++;
+    }
     return (1);
 }

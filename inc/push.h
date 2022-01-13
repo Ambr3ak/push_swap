@@ -35,6 +35,8 @@ typedef struct s_swap
 	t_list *mlc;
 	t_arg *arg;
 	int smallst;
+	int key_nbr;
+	int nb;
 	int ind_sml;
 	int lst_size;
 	int nb_arg;
@@ -86,6 +88,11 @@ void ra(t_list_int **list_a);
 void    rra(t_list_int **list_a);
 void pa(t_list_int **a, t_list_int **b);
 void sort_k(t_swap *data);
+t_list_int *init_k(t_list_int *list_a);
+int find_small(t_swap *data, t_list_int *num_a);
+int get_index(t_list_int *list, int nb);
+int get_lst_size(t_list_int *list);
+
 void sb(t_list_int **list_b);
 void rb(t_list_int **list_b);
 void rrb(t_list_int **list_b);

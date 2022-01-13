@@ -8,6 +8,7 @@ SRCS	= 	./srcs/main.c \
 			./srcs/parser.c \
 			./srcs/sort.c \
 			./srcs/sort_k.c \
+			./srcs/utils.c \
 			./lib_push/ft_lstadd_back.c \
 			./lib_push/ft_lstadd_front.c \
 			./lib_push/ft_lstclear.c \
@@ -31,7 +32,6 @@ INC	=	-I inc
 CC	=	clang
 
 CFLAGS	=	-Wall -Werror -Wextra -g
-
 .c.o	:
 			${CC} ${CFLAGS} ${INC} -c $< -o ${<:.c=.o}
 

@@ -1,5 +1,21 @@
 #include "../inc/push.h"
 
+t_list_int *init_k(t_list_int *list_a)
+{
+    t_list_int *lst;
+    t_list_int *tmp_k;
+    
+
+    lst = list_a;
+    tmp_k = NULL;
+    while (lst)
+    {
+        lst_add(lst->content, &tmp_k);
+        lst = lst->next;
+    }
+    return (tmp_k);
+}
+
 void ra_k(t_list_int **list_a)
 {
 	t_list_int *tmp;

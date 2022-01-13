@@ -12,6 +12,7 @@ void sb(t_list_int **list_b)
         list->next = tmp->next;
 	    ft_lstadd_front_int(list_b, tmp);
     }
+    printf("sb\n");
 }
 
 void rb(t_list_int **list_b)

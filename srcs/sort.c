@@ -126,9 +126,9 @@ void sort_a_2(t_swap *data)
         if (data->arg->num_b->content != lrg && tmp_b->content == lrg)
             sb(&data->arg->num_b);
         index = get_index(data->arg->num_b, lrg);
-        if (data->arg->num_b->content == lrg)
+        if (index == 0)
             pa(&data->arg->num_a, &data->arg->num_b);
-        if (get_lst_size(data->arg->num_b) / 2 > index)
+        else if ((get_lst_size(data->arg->num_b)) / 2 > index)
             rb(&data->arg->num_b);
         else
             rrb(&data->arg->num_b);
@@ -144,9 +144,9 @@ void sort_a(t_swap *data)
     {
         smaller = small(data->arg->num_a);
         index = get_index(data->arg->num_a, smaller);
-        if (data->arg->num_a->content == smaller)
+        if (index == 0)
             pb(&data->arg->num_a, &data->arg->num_b);
-        if (get_lst_size(data->arg->num_a) / 2 > index)
+        else if ((get_lst_size(data->arg->num_a)) / 2 > index)
             ra(&data->arg->num_a);
         else
             rra(&data->arg->num_a);
@@ -174,17 +174,16 @@ void sort_100(t_swap *data)
         while (find_keynbr(data, data->arg->num_a, key_nbr))
         {   
             data->ind_sml = get_index(data->arg->num_a, data->key_nbr);
-            if (data->arg->num_a->content == data->key_nbr)
+            if (data->ind_sml == 0)
                 pb(&data->arg->num_a, &data->arg->num_b);
-            if (get_lst_size(data->arg->num_a) / 2 > data->ind_sml)
+            else if ((get_lst_size(data->arg->num_a)) / 2 > data->ind_sml)
                 ra(&data->arg->num_a);
-            else
+            else if ((get_lst_size(data->arg->num_a)) / 2 < data->ind_sml)
                 rra(&data->arg->num_a);
         }
         index += size / 4;
     }
     sort_a(data);
-    //sort_five(data);
 }
 
 void    start_sort(t_swap *data)

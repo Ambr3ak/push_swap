@@ -15,6 +15,20 @@ void exit_prog(t_swap *data, int error)
 	exit (0);
 }
 
+int two_argv(char argv[1])
+{
+	int i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (argv[i] == ' ')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
     t_swap *data;
@@ -25,7 +39,8 @@ int main(int argc, char **argv)
 	    return(-1);
 	}
 	else if (argc == 2)
-		return (0);
+		if (!two_argv(argv[1]))
+			return (0);
     data = malloc(sizeof(t_swap));
     data->mlc = NULL;
     if (data)

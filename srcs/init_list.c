@@ -4,7 +4,7 @@ int	lst_add(int ptr, t_list_int **stack)
 {
 	t_list_int	*elem;
 
-	elem = ft_lstnew_int((ptr));
+	elem = ft_lstnew_int(ptr);
 	if (!(elem))
 	{
 		return (ERR_ARG);
@@ -21,16 +21,11 @@ int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 	int i;
 
 	i = 0;
-	while (tmp[i])
+	while (i < data->lst_size)
 	{
-		
-		if (!lst_add(tmp[i], stack))
-			return (ERR_LIST);
-		if (i == data->lst_size)
-			break;
+		lst_add(tmp[i], stack);
 		i++;
 	}
-
 	return (1);
 }
 

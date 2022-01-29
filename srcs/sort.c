@@ -25,7 +25,7 @@ int is_sorted(t_list_int *list, int *tab, int size)
 
     lst = list;
     i = 0;
-	while (lst)
+	while (i < size)
 	{
 		tab[i] = (int)lst->content;
         lst = lst->next;

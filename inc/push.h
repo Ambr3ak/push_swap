@@ -2,6 +2,7 @@
 # define PUSH_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # define ERR_MALLOC -1
 # define ERR_ARG -2

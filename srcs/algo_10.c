@@ -7,7 +7,6 @@ void sort_min(t_swap *data)
     a_tmp = data->a->next;
     if (data->a->content > a_tmp->content)
         sa(&data->a);
-    free(a_tmp);
 }
 
 void sort_three(t_swap *data)

@@ -37,6 +37,7 @@ int init_atoi(t_swap *data, char **argv)
 	while (argv[i])
 	{
 		tmp[j] = ft_atoi(argv[i]);
+		printf("%d\n", tmp[j]);
 		i++;
 		j++;
 	}
@@ -56,11 +57,11 @@ int parser_nb(t_swap *data, char **argv)
 	while (argv[i])
 	{
 		j = 0;
-		while ((ft_isdigit(argv[i][j]) || argv[i][0] == '-') && argv[i][j])
+		while ((ft_isdigit(argv[i][j]) || argv[i][0] == '-' || argv[i][0] == '+') && argv[i][j])
 		{
 			j++;
 		}
-		if (argv[i][j] != '\0')
+		if (argv[i][j] != '\0' || (argv[i][j] == '\0' && j == 0))
 			return (ERR_ARG);
 		l++;
 		i++;

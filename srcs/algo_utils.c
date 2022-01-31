@@ -11,7 +11,7 @@ int find_keynbr(t_swap *data, t_list_int *num_a, int key_nbr)
         if (lst->content <= key_nbr)
         {
             data->key_nbr = lst->content;
-            return (data->key_nbr);
+            return (1);
         }
         else
             lst = lst->next;
@@ -75,4 +75,5 @@ void proximity_algo(t_swap *data, int index)
         ra(&data->a);
     else
         rra(&data->a);
+    data->j++;
 }

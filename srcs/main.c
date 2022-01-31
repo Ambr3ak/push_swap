@@ -8,8 +8,8 @@ void exit_prog(t_swap *data, int error)
 		ft_putstr_fd("Error\nNot only integers", 1);
 	if (error == -3)
 		ft_putstr_fd("Error\nInteger is more than 1 time", 1);
-	//if (error == 0)
-	//	ft_putstr_fd("Ok\n", 1);
+	ft_lstclear_int(&data->a);
+    ft_lstclear_int(&data->arg->stack_k);
 	free_malloc_lst(data);
 	free(data);
 	exit (0);

@@ -6,11 +6,10 @@ int check_double(int *tmp, int nb)
 	int j;
 
 	i = 0;
-	j = i + 1;
 	while (tmp[i])
 	{
 		j = i + 1;
-		if (j == nb - 2)
+		if (j == nb - 1)
 				break;
 		while (tmp[j] && j < nb - 1)
 		{
@@ -37,13 +36,12 @@ int init_atoi(t_swap *data, char **argv)
 	while (argv[i])
 	{
 		tmp[j] = ft_atoi(argv[i]);
-		printf("%d\n", tmp[j]);
 		i++;
 		j++;
 	}
-	if (!check_double(tmp, data->arg->nb))
-		return (init_lst(data, tmp, &data->a));
-	return (-3);
+	if (check_double(tmp, data->arg->nb) < 0)
+		return (-3);
+	return (init_lst(data, tmp, &data->a));
 }
 
 int parser_nb(t_swap *data, char **argv)

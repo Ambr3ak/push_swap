@@ -40,6 +40,7 @@ void	ft_lstclear_int(t_list_int **lst)
 	{
 		tmp = list->next;
 		free(list);
+		list = tmp;
 	}
 	*lst = NULL;
 }

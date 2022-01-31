@@ -36,6 +36,7 @@ typedef struct s_swap
 	t_list_int *b;
 	int smallst;
 	int key_nbr;
+	int j;
 	int nb;
 	int index;
 	int lst_size;

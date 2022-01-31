@@ -12,9 +12,6 @@ void    start_sort(t_swap *data)
         sort_100(data);
     else if (data->lst_size > 100)
         sort_more(data);
-    free(data->a);
-    free(data->b);
-    free(data->arg->stack_k);
 }
 
 int is_sorted(t_list_int *list, int *tab, int size)

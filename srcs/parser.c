@@ -44,6 +44,23 @@ int init_atoi(t_swap *data, char **argv)
 	return (init_lst(data, tmp, &data->a));
 }
 
+int check_int(t_swap *data, char **argv)
+{
+	int i;
+	long tmp;
+	
+	
+	i = 0;
+	while (argv[i])
+	{
+		tmp = ft_atoi(argv[i]);
+		if (tmp < -2147483648 || tmp > 2147483647)
+			return (-5);
+		i++;
+	}
+	return (init_atoi(data, argv));
+}
+
 int parser_nb(t_swap *data, char **argv)
 {
     int i;
@@ -64,7 +81,5 @@ int parser_nb(t_swap *data, char **argv)
 		l++;
 		i++;
 	}
-	if (init_atoi(data, argv) < 0)
-		return (-3);
-	return (0);
+	return (check_int(data, argv));
 }

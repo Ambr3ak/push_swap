@@ -12,7 +12,7 @@
 
 #include "../inc/push.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int			m;
 	long		res;

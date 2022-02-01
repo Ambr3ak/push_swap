@@ -3,11 +3,13 @@
 void exit_prog(t_swap *data, int error)
 {
 	if (error == -1)
-		ft_putstr_fd("Error\nBad arguments", 1);
+		ft_putstr_fd("Error\nBad arguments", 2);
 	if (error == -2)
-		ft_putstr_fd("Error\nNot only integers", 1);
+		ft_putstr_fd("Error\nNot only integers", 2);
 	if (error == -3)
-		ft_putstr_fd("Error\nInteger is more than 1 time", 1);
+		ft_putstr_fd("Error\nInteger is more than 1 time", 2);
+	if (error == -5)
+		ft_putstr_fd("Error\nPlease add a value between -2147483648 and 2147483647", 2);
 	ft_lstclear_int(&data->a);
     ft_lstclear_int(&data->arg->stack_k);
 	free_malloc_lst(data);

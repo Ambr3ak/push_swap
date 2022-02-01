@@ -70,7 +70,7 @@ int	ft_lstsize_int(t_list_int *lst);
 int	ft_isdigit(int c);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
-int	ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 
 void	*malloc_list(t_swap *data, int size);
 void	*free_malloc_lst(t_swap *data);

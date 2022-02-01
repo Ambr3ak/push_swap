@@ -19,17 +19,15 @@ int	lst_add(int ptr, t_list_int **stack)
 int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 {
 	int i;
-	int *tab;
 
 	i = 0;
-	tab = malloc_list(data, sizeof(data->lst_size - 1));
 	while (i < data->lst_size)
 	{
 		lst_add(tmp[i], stack);
 		i++;
 	}
-	if (is_sorted(data->a, tab, data->lst_size))
-		return (1);
+	if (!is_sorted(data->a, tmp, data->lst_size))
+		return (0);
 	return (-4);
 }
 

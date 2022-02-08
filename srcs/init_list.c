@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abourdar <abourdar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/08 11:10:04 by abourdar          #+#    #+#             */
+/*   Updated: 2022/02/08 11:10:11 by abourdar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push.h"
 
 int	lst_add(int ptr, t_list_int **stack)
@@ -18,7 +30,7 @@ int	lst_add(int ptr, t_list_int **stack)
 
 int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->lst_size)
@@ -28,38 +40,53 @@ int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 	}
 	if (!is_sorted(data->a, tmp, data->lst_size))
 		return (0);
-	return (-4);
+	return (LIST_TRIEE);
 }
 
-int init_swap(t_swap *data, char **argv, int argc)
+int	init_swap(t_swap *data, char **argv, int argc)
 {
-    data->arg = malloc_list(data, sizeof(t_arg));
+	data->arg = malloc_list(data, sizeof(t_arg));
 	data->a = NULL;
 	data->b = NULL;
-	data->arg->stack_k = NULL;
+	data->k = NULL;
 	data->smallst = -1;
 	data->j = 0;
-    if (!data->arg)
+	if (!data->arg)
 	{
-        return (ERR_MALLOC);
+		return (ERR_MALLOC);
 	}
 	data->arg->nb = argc;
 	data->lst_size = argc - 1;
 	data->error = 0;
-    return (parser_nb(data, argv));
+	return (parser_nb(data, argv));
 }
 
-void init_tab(t_list_int *list, int *tab)
+void	init_tab(t_list_int *list, int *tab)
 {
-    int i;
-    t_list_int *lst;
+	int			i;
+	t_list_int	*lst;
 
-    lst = list;
-    i = 0;
+	lst = list;
+	i = 0;
 	while (lst)
 	{
 		tab[i] = (int)lst->content;
-        lst = lst->next;
-        i++;
+		lst = lst->next;
+		i++;
 	}
+}
+
+t_list_int	*init_k(t_list_int *list_a)
+{
+	t_list_int	*lst;
+	t_list_int	*tmp_k;
+
+	lst = list_a;
+	tmp_k = NULL;
+	while (lst)
+	{
+		lst_add(lst->content, &tmp_k);
+		lst = lst->next;
+	}
+	return (tmp_k);
 }

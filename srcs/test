@@ -1,175 +1,42 @@
-*t_list_int *sa(t_list_int *tmp)
-{
-    t_list_int *supp;
-
-    supp = 
-    if (!tmp)
-    {
-
-    }
-
-    return (tmp);
-}*/
-
-int	lst_add(t_first *tmp, int ptr)
-{
-    t_list_int *add;
-
-    add = malloc_list(data, sizeof(*add));
-    if (!add)
-        return (ERR_ARG);
-    add->content = ptr;
-    ft_lstadd_back_int(&tmp, ptr);
-    
-
-	/*t_list_int	*elem;
-
-	elem = ft_lstnew_int((ptr));
-	if (!(elem))
-	{
-		return (ERR_ARG);
-	}
-	if (!(tmp))
-		tmp = elem;
-	else
-		ft_lstadd_back_int(&tmp, elem);
-	return (ptr);*/
-}
-
-t_first	*init_lst(t_swap *data, int *tmp)
-{
-    t_first *list;
-    t_list_int *elem;
-    int i;
-    
-    i = 0;
-    list = malloc_list(data, sizeof(*list));
-    elem = ft_lstnew_int(tmp[i]);
-    list->premier = elem;
-    i++;
-	while (tmp[i])
-	{
-		if (!lst_add(list, tmp[i]))
-			return (NULL);
-		i++;
-	}
-	while (elem != NULL)
-	{
- 		ft_putstr_fd("%d -> ", (int)elem->content);
-        elem = elem->next;
-	}
-    //sa(elem);
-    return (list);
-}
-
-int init_swap(t_swap *data, char **argv, int argc)
-{
-    data->arg = malloc_list(data, sizeof(t_arg));
-    if (!data->arg)
-	{
-        return (ERR_MALLOC);
-	}
-	data->arg->nb = argc;
-	data->error = 0;
-    return (parser_nb(data, argv));
-}
-
-
-ft_putstr_fd("A STACK\n");
-	while (data->a)
-	{
-		ft_putstr_fd("%d -> ", (int)data->a->content);
-        data->a = data->a->next;
-	}
-	ft_putstr_fd("\nB STACK\n");
-	while (data->b)
-	{
-		ft_putstr_fd("%d -> ", (int)data->b->content);
-        data->b = data->b->next;
-	}
-
-int find_small(t_swap *data, int *tab, int nb)
-{
-    int i;
-    
-    i = 0;
-    while (tab[i] && tab[i] < nb)
-        i++;
-    if (i == 0)
-        return (-1);
-    return (data->smallst = i - 1);
-}
-
-int find_large(t_swap *data, int *tab, int nb)
-{
-    int i;
-    int j;
-    
-    i = 0;
-    j = 0;
-    while (tab[j])
-        j++;
-    while (tab[i] && tab[i] < nb)
-        i++;
-    if (i == j)
-        return (-1);
-    return (data->i_large = i);
-}
-
-Pour 3 values = entre 2 / 3 opérations
-Pour 5 values = max 12
-Pour 100 values = barème de 1 à 5
-  - moins de 700: 5
-  - moins de 900: 4
-  - moins de 1100: 3
-  - moins de 1300: 2
-  - moins de 1500: 1
-Pour 500 values = barème de 1 à 5
-  - moins de 5500: 5
-  - moins de 7000: 4
-  - moins de 8500: 3
-  - moins de 10000: 2
-  - moins de 11500: 1
-
   Correction
 
 Pour 3 values
-Operations : entre 2 / 3 opérations
+Operations : entre 2 / 3 opérations OK
 Leaks
-Checker
+Checker OK
 
 Pour 5 values
-Operations : max 12
+Operations : max 12 OK
 Leaks
-Checker
+Checker OK
 
-Pour 100 values = barème de 1 à 5
+Pour 100 values = barème de 1 à 5 633 747 724
 Operations :
   - moins de 700: 5
-  - moins de 900: 4
+  - moins de 900: 4 OK
   - moins de 1100: 3
   - moins de 1300: 2
   - moins de 1500: 1
 Leaks
-Checker
+Checker OK
 
-Pour 500 values = barème de 1 à 5
+Pour 500 values = barème de 1 à 5 7240 7143 7144
 Operations
   - moins de 5500: 5
   - moins de 7000: 4
-  - moins de 8500: 3
+  - moins de 8500: 3 OK
   - moins de 10000: 2
   - moins de 11500: 1
 Leaks
-Checker
+Checker OK OK OK
 
-1 arguments
-2 arguments
-Liste deja triee
-Double int
+1 arguments OK
+2 arguments OK
+Liste deja triee OK
+Double int OK
 Autre char
-Int min/ Int max
-Int min -- Int max ++
+Int min/ Int max 2147483647 -2147483648 OK
+Int min -- Int max ++ OK
 
 STDERR pour les erreurs
 

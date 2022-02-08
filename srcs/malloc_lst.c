@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/push.h"
+#include "../inc/push.h"
 
-void	*lst_add_mlc(t_swap *data,void *ptr)
+void	*lst_add_mlc(t_swap *data, void *ptr)
 {
 	t_list	*elem;
 

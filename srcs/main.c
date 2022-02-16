@@ -42,17 +42,15 @@ int	main(int argc, char **argv)
 	t_swap	*data;
 
 	if (argc < 2)
-	{
-		ft_putstr_fd("Error\nbad number of arguments", 1);
 		return (-1);
-	}
 	else if (argc == 2)
 		if (!two_argv(argv[1]))
 			return (0);
 	data = malloc(sizeof(t_swap));
-	data->mlc = NULL;
+	ft_memset(data, 0, sizeof(t_swap));
 	if (data)
 	{
+		data->mlc = NULL;
 		data->error = init_swap(data, argv, argc);
 		if (!data->error)
 			start_sort(data);

@@ -12,24 +12,22 @@
 
 #include "../inc/push.h"
 
-int	check_double(int *tmp, int nb)
+int	check_double(t_list_int *list)
 {
-	int	i;
-	int	j;
+	t_list_int	*list1;
+	t_list_int	*list2;
 
-	i = 0;
-	while (tmp[i])
+	list1 = list;
+	while (list1)
 	{
-		j = i + 1;
-		if (j == nb - 1)
-			break ;
-		while (tmp[j] && j < nb - 1)
+		list2 = list1->next;
+		while (list2)
 		{
-			if (tmp[i] == tmp[j])
+			if (list1->content == list2->content)
 				return (ERR_DOUBLE);
-			j++;
+			list2 = list2->next;
 		}
-		i++;
+		list1 = list1->next;
 	}
 	return (0);
 }
@@ -38,22 +36,18 @@ int	init_atoi(t_swap *data, char **argv)
 {
 	int	i;
 	int	j;
-	int	*tmp;
 
 	i = 1;
 	j = 0;
-	tmp = malloc_list(data, sizeof(int) * data->arg->nb);
-	if (!tmp)
-		return (ERR_MALLOC);
 	while (argv[i])
 	{
-		tmp[j] = ft_atoi(argv[i]);
+		data->tmp[j] = ft_atoi(argv[i]);
 		i++;
 		j++;
 	}
-	if (check_double(tmp, data->arg->nb) < 0)
-		return (ERR_DOUBLE);
-	return (init_lst(data, tmp, &data->a));
+	if (init_lst(data, data->tmp, &data->a) < 0)
+		return (LIST_TRIEE);
+	return (check_double(data->a));
 }
 
 int	check_int(t_swap *data, char **argv)

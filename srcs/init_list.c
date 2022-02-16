@@ -40,40 +40,23 @@ int	init_lst(t_swap *data, int *tmp, t_list_int **stack)
 	}
 	if (!is_sorted(data->a, tmp, data->lst_size))
 		return (0);
-	return (LIST_TRIEE);
+	return (ERR_DOUBLE);
 }
 
 int	init_swap(t_swap *data, char **argv, int argc)
 {
-	data->arg = malloc_list(data, sizeof(t_arg));
-	data->a = NULL;
-	data->b = NULL;
-	data->k = NULL;
+	data->tab = malloc_list(data, sizeof(int) * 3);
+	data->tmp = malloc_list(data, sizeof(int) * argc);
 	data->smallst = -1;
 	data->j = 0;
-	if (!data->arg)
+	if (!data->tab)
 	{
 		return (ERR_MALLOC);
 	}
-	data->arg->nb = argc;
+	data->nb_ac = argc;
 	data->lst_size = argc - 1;
 	data->error = 0;
 	return (parser_nb(data, argv));
-}
-
-void	init_tab(t_list_int *list, int *tab)
-{
-	int			i;
-	t_list_int	*lst;
-
-	lst = list;
-	i = 0;
-	while (lst)
-	{
-		tab[i] = (int)lst->content;
-		lst = lst->next;
-		i++;
-	}
 }
 
 t_list_int	*init_k(t_list_int *list_a)

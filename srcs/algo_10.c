@@ -21,19 +21,45 @@ void	sort_min(t_swap *data)
 		sa(&data->a);
 }
 
+void	init_tab(t_list_int *list, int *tab, int size)
+{
+	int			i;
+	t_list_int	*lst;
+
+	lst = list;
+	i = 0;
+	while (i < size)
+	{
+		tab[i] = (int)lst->content;
+		lst = lst->next;
+		i++;
+	}
+}
+
 void	sort_three(t_swap *data)
 {
-	int	*tab;
-
-	tab = malloc_list(data, sizeof(int) * (3));
-	while (!is_sorted(data->a, tab, 3))
+	init_tab(data->a, data->tab, 3);
+	if (data->tab[0] > data->tab[1] && data->tab[1] > data->tab[2])
 	{
-		if (tab[0] > tab[1])
-			sa(&data->a);
-		else if (tab[0] > tab[1] && tab[2] > tab[1])
-			ra(&data->a);
-		else if (tab[0] < tab[1])
+		sa(&data->a);
+		rra(&data->a);
+	}
+	else if (data->tab[0] < data->tab[1] && data->tab[1] > data->tab[2])
+	{
+		if (data->tab[0] > data->tab[2])
 			rra(&data->a);
+		else
+		{
+			sa(&data->a);
+			ra(&data->a);
+		}
+	}
+	else if (data->tab[0] > data->tab[1] && data->tab[1] < data->tab[2])
+	{
+		if (data->tab[0] < data->tab[2])
+			sa(&data->a);
+		else
+			ra(&data->a);
 	}
 }
 

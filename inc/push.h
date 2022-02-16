@@ -35,22 +35,19 @@ typedef struct s_list_int
 	struct s_list_int	*next;
 }				t_list_int;
 
-typedef struct s_arg
-{
-	int	nb;
-}				t_arg;
-
 typedef struct s_swap
 {
 	t_list		*mlc;
-	t_arg		*arg;
 	t_list_int	*a;
 	t_list_int	*b;
 	t_list_int	*k;
+	int			*tab;
+	int			*tmp;
 	int			smallst;
 	int			key_nbr;
 	int			j;
 	int			nb;
+	int			nb_ac;
 	int			index;
 	int			lst_size;
 	int			nb_arg;
@@ -77,11 +74,11 @@ void		ft_putchar_fd(char c, int fd);
 int			lst_add(int ptr, t_list_int **stack);
 int			ft_isdigit(int c);
 long		ft_atoi(const char *str);
+void		*ft_memset(void *b, int c, size_t len);
 
 /* SRCS */
 void		*malloc_list(t_swap *data, int size);
 void		*free_malloc_lst(t_swap *data);
-void		init_tab(t_list_int *list, int *tab);
 void		sort_k(t_swap *data);
 void		start_sort(t_swap *data);
 

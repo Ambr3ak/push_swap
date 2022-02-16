@@ -22,6 +22,7 @@ SRCS	= 	./srcs/main.c \
 			./lib_push/ft_putchar_fd.c \
 			./lib_push/ft_atoi.c \
 			./lib_push/ft_putstr_fd.c \
+			./lib_push/ft_memset.c \
 			./srcs/malloc_lst.c
 
 
@@ -32,7 +33,7 @@ INC	=	-I inc
 
 CC	=	clang
 
-CFLAGS	=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -g
 .c.o	:
 			${CC} ${CFLAGS} ${INC} -c $< -o ${<:.c=.o}
 

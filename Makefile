@@ -23,6 +23,7 @@ SRCS	= 	./srcs/main.c \
 			./lib_push/ft_atoi.c \
 			./lib_push/ft_putstr_fd.c \
 			./lib_push/ft_memset.c \
+			./lib_push/ft_strlen.c \
 			./srcs/malloc_lst.c
 
 

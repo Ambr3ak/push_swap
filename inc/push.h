@@ -75,6 +75,7 @@ int			lst_add(int ptr, t_list_int **stack);
 int			ft_isdigit(int c);
 long		ft_atoi(const char *str);
 void		*ft_memset(void *b, int c, size_t len);
+size_t		ft_strlen(const char *s);
 
 /* SRCS */
 void		*malloc_list(t_swap *data, int size);

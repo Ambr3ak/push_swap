@@ -23,18 +23,25 @@ void	exit_prog(t_swap *data, int error)
 	exit (0);
 }
 
-int	two_argv(char argv[1])
+int	check_size(char *argv)
+{
+	if (ft_strlen(argv) > 11)
+		return (-1);
+	return (0);
+}
+
+int	two_argv(char *argv)
 {
 	int	i;
 
 	i = 0;
 	while (argv[i])
 	{
-		if (argv[i] == ' ')
+		if (argv[i] == ' ' || (!ft_isdigit(argv[i]) && argv[i] != '-'))
 			return (-1);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int	main(int argc, char **argv)
@@ -42,7 +49,7 @@ int	main(int argc, char **argv)
 	t_swap	*data;
 
 	if (argc < 2)
-		return (-1);
+		return (0);
 	else if (argc == 2)
 		if (!two_argv(argv[1]))
 			return (0);

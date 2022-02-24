@@ -58,11 +58,14 @@ int	check_int(t_swap *data, char **argv)
 	i = 0;
 	while (argv[i])
 	{
+		if (ft_strlen(argv[i]) > 11)
+			return (ERR_INT);
 		tmp = ft_atoi(argv[i]);
 		if (tmp < -2147483648 || tmp > 2147483647)
 			return (ERR_INT);
 		i++;
 	}
+
 	return (init_atoi(data, argv));
 }
 

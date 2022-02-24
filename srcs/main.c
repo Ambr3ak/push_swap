@@ -41,7 +41,7 @@ int	two_argv(char *argv)
 			return (-1);
 		i++;
 	}
-	return (-1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -50,9 +50,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	else if (argc == 2)
-		if (!two_argv(argv[1]))
-			return (0);
 	data = malloc(sizeof(t_swap));
 	ft_memset(data, 0, sizeof(t_swap));
 	if (data)

@@ -65,7 +65,6 @@ int	check_int(t_swap *data, char **argv)
 			return (ERR_INT);
 		i++;
 	}
-
 	return (init_atoi(data, argv));
 }
 
